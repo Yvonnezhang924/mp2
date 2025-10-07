@@ -1,24 +1,22 @@
 import React from "react";
-import logo from "./logo.svg";
+import { Routes, Route } from "react-router-dom";
+import Navigation from "./components/Navigation";
+import ListView from "./components/ListView";
+import GalleryView from "./components/GalleryView";
+import DetailView from "./components/DetailView";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navigation />
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<ListView />} />
+          <Route path="/gallery" element={<GalleryView />} />
+          <Route path="/pokemon/:id" element={<DetailView />} />
+        </Routes>
+      </main>
     </div>
   );
 }

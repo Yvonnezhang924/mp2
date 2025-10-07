@@ -1,38 +1,77 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
+  background: linear-gradient(135deg, #f0e9f0 0%);
+  position: relative; /* for background overlay */
+  overflow: hidden;
+}
+
+/* Subtle tiled Pokémon background overlay across the main page */
+.App::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  background-image:
+    url("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"),
+    url("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/39.png");
+  background-size: 200px 200px, 200px 200px;
+  background-repeat: repeat, repeat;
+  background-position:
+    0 0,
+    100px 100px;
+}
+
+.main-content {
+  min-height: calc(100vh - 70px);
+  padding: 0;
+  position: relative; /* ensure above background overlay */
+  z-index: 1;
+}
+
+/* Global styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #f5f7fa;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Utility classes */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  font-size: 1.2rem;
+  color: #7f8c8d;
+}
+
+.error {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  min-height: 200px;
+  text-align: center;
+  color: #e74c3c;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+/* Responsive design */
+@media (max-width: 768px) {
+  .main-content {
+    min-height: calc(100vh - 60px);
   }
 }
